@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#090a0d">
+    <meta name="description" content="Organiza tu equipo Bakugan con un constructor visual de Bakugan y cartas.">
+
+    <title>Interfaz Bakugan | Team Builder</title>
+
+    <link rel="icon" type="image/svg+xml" href="ga-box_list_bakugan.ico">
+    <link rel="preconnect" href="https://wsrv.nl" crossorigin>
+    <link rel="preconnect" href="https://bakugan.wiki" crossorigin>
+    <link rel="stylesheet" href="interfaz_bakugan.css?v=20261016-ga-box-footer1">
+    <link rel="stylesheet" href="bakugan_treatment_filter.css?v=20261015-treatment6-alpha14">
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer="defer"></script>
+    <script src="bakugan_catalog_data.js?v=20261013-obf1" defer="defer"></script>
+    <script src="card_catalog_data.js?v=20261013-obf1" defer="defer"></script>
+    <script src="gray_power_catalog_data.js?v=20261013-obf1" defer="defer"></script>
+    <script src="power_catalog_additions.js?v=20261013-obf1" defer="defer"></script>
+    <script src="portal_catalog_additions.js?v=20261013-obf1" defer="defer"></script>
+    <script src="interfaz_bakugan.js?v=20261013-obf1" defer="defer"></script>
+    <script src="bakugan_treatment_data.js?v=20261016-elfin-translucent2" defer="defer"></script>
+    <script src="bakugan_treatment_filter.js?v=20261016-attribute-image1" defer="defer"></script>
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand-mark" href="#inicio" aria-label="Inicio de Interfaz Bakugan">
+                <span class="brand-symbol">B<span>×</span></span>
+                <span class="brand-wording">
+                    <strong>BAKUGAN</strong>
+                    <small>TEAM BUILDER / 01</small>
+                </span>
+            </a>
+
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                CONSTRUCTOR DE EQUIPO
+            </div>
+        </header>
+
+        <main id="inicio">
+            <section class="intro-panel" aria-labelledby="page-title">
+                <div class="intro-copy">
+                    <p class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        CONFIGURACIÓN DE BATALLA
+                    </p>
+
+                    <h1 id="page-title">Arma tu <span>equipo.</span></h1>
+
+                    <p class="intro-description">
+                        Elige tus Bakugan y combina las cartas para preparar tu estrategia.
+                    </p>
+                </div>
+
+                <div class="intro-art" aria-hidden="true">
+                    <div class="art-ring ring-one"></div>
+                    <div class="art-ring ring-two"></div>
+                    <div class="art-core">B<span>×</span></div>
+                    <span class="art-coordinate">BKGN // 06.0</span>
+                </div>
+            </section>
+
+            <div id="equipoCaptura" class="team-board">
+                <div class="capture-heading">
+                    <div>
+                        <p class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            LOADOUT PERSONAL
+                        </p>
+
+                        <h2>
+                            Mi equipo <span class="heading-slash">/</span>
+                            <span class="heading-light">Battle setup</span>
+                        </h2>
+                    </div>
+
+                    <div class="team-counter">
+                        <span class="counter-led"></span>
+                        <span id="selectedCount">00 / 12 SELECCIONADOS</span>
+                    </div>
+                </div>
+
+                <section class="build-section bakugan-section" aria-labelledby="bakugan-title">
+                    <div class="section-heading">
+                        <div class="section-index">01</div>
+                        <div>
+                            <h3 id="bakugan-title">Bakugan</h3>
+                            <p>Escoge tres compañeros de batalla</p>
+                        </div>
+                        <span class="section-count">03 SLOTS</span>
+                    </div>
+
+                    <div id="bakuganSlots" class="bakugan-slots"></div>
+                </section>
+
+                <section class="build-section portal-section" aria-labelledby="portal-title">
+                    <div class="section-heading">
+                        <div class="section-index">02</div>
+                        <div>
+                            <h3 id="portal-title">Cartas portal</h3>
+                            <p>Una carta por acabado</p>
+                        </div>
+                        <span class="section-count">03 SLOTS</span>
+                    </div>
+
+                    <div id="portalSlots" class="portal-slots"></div>
+                </section>
+
+                <section class="build-section power-section" aria-labelledby="power-title">
+                    <div class="section-heading">
+                        <div class="section-index">03</div>
+                        <div>
+                            <h3 id="power-title">Cartas de poder</h3>
+                            <p>Dos cartas por color</p>
+                        </div>
+                        <span class="section-count">06 SLOTS</span>
+                    </div>
+
+                    <div id="powerSlots" class="power-slots"></div>
+                </section>
+
+                <div class="capture-footer">
+                    <span>BAKUGAN / PERSONAL TEAM RECORD</span>
+                    <span id="captureDate"></span>
+                </div>
+            </div>
+
+            <section class="save-area" aria-label="Guardar e importar equipo">
+                <div class="save-note">
+                    <span class="save-icon">↳</span>
+                    <p>Tu configuración se puede exportar como una imagen PNG.</p>
+                </div>
+
+                <div class="save-actions">
+                    <button id="saveTeamBtn" class="save-button" type="button">
+                        <span class="save-button-icon" aria-hidden="true">⇩</span>
+                        <span>Guardar equipo</span>
+                        <span class="button-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <button id="importTeamBtn" class="import-button" type="button">
+                        Importar equipo para editar
+                    </button>
+
+                    <input
+                        id="importTeamFile"
+                        class="visually-hidden"
+                        type="file"
+                        accept="image/png,.png"
+                    >
+                </div>
+
+                <p id="saveStatus" class="save-status" role="status" aria-live="polite"></p>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <span>INTERFAZ_BAKUGAN</span>
+            <span>DISEÑADO PARA MÓVIL Y ESCRITORIO <i></i></span>
+            <a class="ownership-link" href="Declaraci%C3%B3n%20de%20autor%C3%ADa%20y%20titularidad.txt">PROPIEDAD DEL PROYECTO · GA-BOX STORE</a>
+        </footer>
+    </div>
+
+    <div id="pickerModal" class="picker-modal" aria-hidden="true">
+        <div class="picker-backdrop" data-close-picker="true"></div>
+
+        <section
+            class="picker-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pickerTitle"
+        >
+            <header class="picker-header">
+                <div class="picker-title-wrap">
+                    <p class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        SELECTOR DE RECURSOS
+                    </p>
+
+                    <h2 id="pickerTitle">Selecciona una opción</h2>
+
+                    <p id="pickerSubtitle" class="picker-subtitle">
+                        Elige una imagen para tu equipo
+                    </p>
+                </div>
+
+                <button
+                    id="closePickerBtn"
+                    class="close-picker"
+                    type="button"
+                    aria-label="Cerrar ventana"
+                >×</button>
+            </header>
+
+            <div class="picker-tools">
+                <label class="search-box" for="pickerSearch">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input
+                        id="pickerSearch"
+                        type="search"
+                        placeholder="Buscar por nombre..."
+                        autocomplete="off"
+                    >
+                    <span class="search-shortcut">/</span>
+                </label>
+
+                <label id="attributeFilterWrap" class="attribute-filter" for="attributeFilter" hidden>
+                    <span>Atributo</span>
+                    <select id="attributeFilter">
+                        <option value="all">Todos los atributos</option>
+                        <option value="pyrus">Pyrus</option>
+                        <option value="aquos">Aquos</option>
+                        <option value="darkus">Darkus</option>
+                        <option value="haos">Haos</option>
+                        <option value="ventus">Ventus</option>
+                        <option value="subterra">Subterra</option>
+                        <option value="aurelus">Aurelus</option>
+                    </select>
+                </label>
+
+                <div id="treatmentFilterWrap" class="attribute-filter" hidden>
+                    <label for="treatmentFilter">Tratamiento</label>
+                    <select id="treatmentFilter">
+                        <option value="all">Todos los tratamientos</option>
+                        <option value="standard">Standard</option>
+                        <option value="special-attack">Special Attack</option>
+                        <option value="super-assault">Super Assault</option>
+                    </select>
+                </div>
+
+                <div class="results-label">
+                    <span class="status-dot"></span>
+                    <span id="resultsCount">00 OPCIONES</span>
+                </div>
+            </div>
+
+            <div id="pickerResults" class="picker-results" aria-live="polite"></div>
+
+            <footer class="picker-footer">
+                <span id="pickerPageInfo" class="page-info">PÁGINA 1 / 1</span>
+
+                <div class="pagination-controls">
+                    <button id="prevPageBtn" type="button" class="page-button" aria-label="Página anterior">←</button>
+                    <button id="nextPageBtn" type="button" class="page-button" aria-label="Página siguiente">→</button>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+    <!-- Botpress Webchat -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/10/13/15/20261013152151-FHIR7MR8.js" defer></script>
+</body>
+</html>
